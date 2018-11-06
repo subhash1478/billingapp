@@ -1,6 +1,6 @@
 <mat-card class="login-card">
   <mat-card-header>
-    <mat-card-title>Create Invoice</mat-card-title>
+    <mat-card-title>Create  </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form  [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
@@ -15,38 +15,38 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field >
-        <input matInput placeholder="Document number"  formControlName="document_number" required>
+        <input matInput placeholder="Document number"  formControlName="documentNumber" required>
       </mat-form-field>
       <mat-form-field >
-        <input matInput placeholder="P.O number" formControlName="po_number" required>
+        <input matInput placeholder="P.O number" formControlName="poNumber" required>
       </mat-form-field>
       <mat-form-field >
-        <input matInput [matDatepicker]="picker1" placeholder="P.O. date" formControlName="po_date" required>
+        <input matInput [matDatepicker]="picker1" placeholder="P.O. date" formControlName="poDate" required>
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
       <mat-form-field >
-        <input matInput [matDatepicker]="picker"  formControlName="issue_date" required placeholder="Issue  date">
+        <input matInput [matDatepicker]="picker"  formControlName="issueDate" required placeholder="Issue  date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field >
-        <input matInput placeholder="Payment terms" formControlName="payment_terms" required>
+        <input matInput placeholder="Payment terms" formControlName="paymentTerms" required>
       </mat-form-field>
       <mat-form-field >
-        <input matInput [matDatepicker]="picker3"  formControlName="due_date" required placeholder="Due  date">
+        <input matInput [matDatepicker]="picker3"  formControlName="dueDate" required placeholder="Due  date">
         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker3></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Place of supply"  formControlName="place_of_supply" required>
+        <mat-select placeholder="Place of supply"  formControlName="placeOfSupply" required>
           <mat-option>Clear</mat-option>
           <mat-option value="valid">Valid option</mat-option>
           <mat-option value="invalid">Invalid option</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field >
-        <textarea matInput placeholder="Ship to" formControlName="ship_to" required></textarea>
+        <textarea matInput placeholder="Ship to" formControlName="shipTo" required></textarea>
       </mat-form-field>
     </mat-card>
     <!-- client details part -->
@@ -72,7 +72,7 @@
       <input matInput placeholder="QTY" formControlName="qty" required>
     </mat-form-field>
     <mat-form-field >
-      <input matInput placeholder="Unit Price" formControlName="unit_price" required>
+      <input matInput placeholder="Unit Price" formControlName="unitPrice" required>
     </mat-form-field>
     <mat-form-field >
       <input matInput placeholder="Discount" formControlName="discount" required>
@@ -85,36 +85,35 @@
   </div>
   </div>
   <!-- prodcut details part -->
-  <mat-checkbox formControlName="discount_on_all" required>Discount on all</mat-checkbox>
-  <mat-checkbox formControlName="shipping_packing_cost" required>Add shipping and packing cost</mat-checkbox>
+  <mat-checkbox formControlName="discountOnAll" required>Discount on all</mat-checkbox>
+  <mat-checkbox formControlName="shippingPackingCost" required>Add shipping and packing cost</mat-checkbox>
   <mat-checkbox formControlName="cess" required>show CESS</mat-checkbox>
-  <mat-checkbox formControlName="reverse_change" required>Subject to reverse change</mat-checkbox>
+  <mat-checkbox formControlName="reverseChange" required>Subject to reverse change</mat-checkbox>
   <mat-checkbox formControlName="payment" required>Add payment</mat-checkbox>
   <button> More option</button>
   <mat-form-field>
-    <mat-select placeholder="Payment type" formControlName="payment_type" required
+    <mat-select placeholder="Payment type" formControlName="paymentType" required
     >
     <mat-option value="valid">Valid option</mat-option>
     <mat-option value="invalid">Invalid option</mat-option>
   </mat-select>
 </mat-form-field>
 <mat-form-field >
-  <input matInput placeholder="Amount paid" formControlName="amount_paid" required>
+  <input matInput placeholder="Amount paid" formControlName="amountPaid" required>
 </mat-form-field>
 <mat-form-field>
   <textarea matInput placeholder="Note" formControlName="note" required></textarea>
 </mat-form-field>
 <mat-form-field>
-  <textarea matInput placeholder="Note" formControlName="more_note" required></textarea>
+  <textarea matInput placeholder="Note" formControlName="moreNote" required></textarea>
 </mat-form-field>
 <mat-form-field>
-  <textarea matInput placeholder="Private note" formControlName="private_node" required></textarea>
+  <textarea matInput placeholder="Private note" formControlName="privateNote" required></textarea>
 </mat-form-field>
 <button> Preview Document</button>
-</form> </mat-card-content>
-<mat-card-actions>
-  <button mat-raised-button (click)="login()" color="primary">Login</button>
-</mat-card-actions>
+</form>
+ </mat-card-content>
+ 
 </mat-card>
 
 

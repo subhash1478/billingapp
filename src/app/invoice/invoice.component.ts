@@ -12,66 +12,72 @@ import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@ang
 export class InvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
 
-  constructor(public services:WebservicesService,public fb:FormBuilder) { }
+  constructor(public services: WebservicesService, public fb: FormBuilder) { }
 
   ngOnInit() {
-  this.invoiceForm=this.fb.group({
-    client:['',Validators.required],
-    document_number:['',Validators.required],
-    issue_date:['',Validators.required],
-    po_number:['',Validators.required],
-    po_date:['',Validators.required],
-    payment_terms:['',Validators.required],
-    due_date:['',Validators.required],
-    place_of_supply:['',Validators.required],
-    ship_to:['',Validators.required],
-
-    
-
-    description:['',Validators.required],
-    uom:['',Validators.required],
-    qty:['',Validators.required],
-    unit_price:['',Validators.required],
-    discount:['',Validators.required],
-    tax:['',Validators.required],
-    discount_on_all:['',Validators.required],
-    shipping_packing_cost:['',Validators.required],
-    cess:['',Validators.required],
-    reverse_change:['',Validators.required],
-    payment:['',Validators.required],
-    payment_type:['',Validators.required],
-    note:['',Validators.required],
-    more_note:['',Validators.required],
-    private_node:['',Validators.required],
-    amount_paid:['',Validators.required],
+  this.invoiceForm = this.fb.group({
+    client: ['', Validators.required],
+    documentNumber: ['', Validators.required],
+    issueDate: ['', Validators.required],
+    poNumber: ['', Validators.required],
+    poDate: ['', Validators.required],
+    paymentTerms: ['', Validators.required],
+    dueDate: ['', Validators.required],
+    placeOfSupply: ['', Validators.required],
+    shipTo: ['', Validators.required],
+    description: ['', Validators.required],
+    uom: ['', Validators.required],
+    qty: ['', Validators.required],
+    unitPrice: ['', Validators.required],
+    discount: ['', Validators.required],
+    tax: ['', Validators.required],
+    discountOnAll: ['', Validators.required],
+    shippingPackingCost: ['', Validators.required],
+    cess: ['', Validators.required],
+    reverseChange: ['', Validators.required],
+    payment: ['', Validators.required],
+    paymentType: ['', Validators.required],
+    note: ['', Validators.required],
+    moreNote: ['', Validators.required],
+    privateNote: ['', Validators.required],
+    amountPaid: ['', Validators.required],
     productDetails: this.fb.array([] )
- 
-  })
-   
+
+  });
+
   }
   addNewProduct() {
-    const phone = this.fb.group({ 
+    const phone = this.fb.group({
       product: [],
       description: [],
-      uom:[],
-      qty:[],
-      unit_price:[],
-      tax:[],
-      discount:[]
-    })
-  
+      uom: [],
+      qty: [],
+      unitPrice: [],
+      tax: [],
+      discount: []
+    });
+
     this.phoneForms.push(phone);
   }
-  
+
   get phoneForms() {
-    return this.invoiceForm.get('productDetails') as FormArray
+    return this.invoiceForm.get('productDetails') as FormArray;
   }
-  
+
   deletePhone(i) {
-    this.phoneForms.removeAt(i)
+    this.phoneForms.removeAt(i);
   }
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.invoiceForm.value);
+
+    this.services.createInvoice(this.invoiceForm.value).subscribe((response) => {
+console.log(response);
+
+    }, (error) => {
+
+      console.log(error);
+
+    });
   }
 }
