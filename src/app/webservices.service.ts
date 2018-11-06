@@ -18,4 +18,9 @@ export class WebservicesService {
 
   }
 
+
+  createCustomer(data){
+    return this.http.post(`${config.apiEndPoint}/api/create-customer`, data);
+
+  }
 }

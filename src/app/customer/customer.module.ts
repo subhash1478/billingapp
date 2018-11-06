@@ -9,10 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [CustomerComponent],
-  imports: [ShareModule,HttpClientModule,
+  imports: [ShareModule, HttpClientModule,
     CommonModule,
     CustomerRoutingModule
   ],
-  providers:[WebservicesService,HttpClientModule]
+  providers: [WebservicesService, HttpClientModule]
 })
 export class CustomerModule { }

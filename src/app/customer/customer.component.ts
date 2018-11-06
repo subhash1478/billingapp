@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { WebservicesService } from '../webservices.service';
 
 @Component({
   selector: 'app-customer',
@@ -12,48 +13,46 @@ export class CustomerComponent implements OnInit {
   formErrors = {
     firstName: '',
     lastName: '',
-    email:'',
-    phone:'',
+    email: '',
+    phone: '',
 
      addresses: [
-      { city: '', country: '' ,state:'',zip:''}
+      { city: '', country: '' , state: '', zip: '', street: ''}
     ]
   };
   validationMessages = {
-    fistrName: {
-      required: 'Name is required.',
-      minlength: 'Name must be 3 characters.',
-     },
+    firstName: {
+      required: 'firstName is required.',
+      },
     lastName: {
-      required: 'Username is required.',
-      minlength: 'Username must be 3 characters.'
-    },
-    email:{
+      required: 'lastName is required.',
+     },
+    email: {
       required: 'email is required.',
      },
-     phone:{
+     phone: {
       required: 'phone is required.',
 
      },
     addresses: {
       city: {
         required: 'City is required.',
-        minlength: 'City must be 3 characters.'
-      },
+       },
       country: {
         required: 'Country is required.'
       },
-      state:{
-        required:'state is required'
+      state: {
+        required: 'state is required'
       },
-      zip:{
-        required:'zip is required'
-      }
+      zip: {
+        required: 'zip is required'
+      },
+
 
     }
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,public services:WebservicesService) {}
 
   ngOnInit() {
     // build the data model for our form
@@ -66,9 +65,9 @@ export class CustomerComponent implements OnInit {
   buildForm() {
     // build our form
     this.form = this.fb.group({
-      firstName: ['', [Validators.minLength(3)]],
-      lastName: ['', [Validators.minLength(3)]],
-      email:['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       phone: ['', [Validators.required]],
 
       addresses: this.fb.array([
@@ -120,7 +119,12 @@ export class CustomerComponent implements OnInit {
     while (n <= addresses.length) {
 
       // add the clear errors back
-      this.formErrors.addresses.push({ city: '', country: '',zip:'',street:'' });
+      this.formErrors.addresses.push({
+        city: '',
+      country: '',
+      zip: '',
+      state: '',
+      street : '' });
 
       // grab the specific group (address)
       const address = <FormGroup>addresses.at(n - 1);
@@ -143,7 +147,10 @@ export class CustomerComponent implements OnInit {
 
   createAddress() {
     return this.fb.group({
-      city: ['', Validators.minLength(3)],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip: ['', Validators.required],
+      street: ['', Validators.required],
       country: ['']
     });
   }
@@ -160,6 +167,11 @@ export class CustomerComponent implements OnInit {
 
   processForm() {
     console.log('processing', this.form.value);
+
+
+    this.services.createCustomer(this.form.value).subscribe(()=>{
+
+    })
   }
 
 }

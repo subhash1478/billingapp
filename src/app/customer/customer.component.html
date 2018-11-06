@@ -1,24 +1,41 @@
 <form (ngSubmit)="processForm()" [formGroup]="form">
 
   <mat-form-field >
-       <input matInput type="text" class="form-control" name="name" placeholder="Firstname"  required
-          formControlName="name">
+       <input matInput type="text" class="form-control" name="firstName" placeholder="Firstname"  required
+          formControlName="firstName">
 
-      <mat-error class="help-block" *ngIf="formErrors.name">
-          {{ formErrors.name }}
+      <mat-error class="help-block" *ngIf="formErrors.firstName">
+          {{ formErrors.firstName }}
       </mat-error>
   </mat-form-field>
 
 <mat-form-field >
-      <input matInput type="text" class="form-control" name="username"  placeholder="Lastname" required
-          formControlName="username">
+      <input matInput type="text" class="form-control" name="lastName"  placeholder="Lastname" required
+          formControlName="lastName">
 
-      <mat-error class="help-block" *ngIf="formErrors.username">
-          {{ formErrors.username }}
+      <mat-error class="help-block" *ngIf="formErrors.lastName">
+          {{ formErrors.lastName }}
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field >
+            <input matInput type="text" class="form-control" name="email" placeholder="Email"  required
+               formControlName="email">
+     
+           <mat-error class="help-block" *ngIf="formErrors.email">
+               {{ formErrors.email }}
+           </mat-error>
+       </mat-form-field>
   <!-- addresses -->
+
+  <mat-form-field >
+        <input matInput type="text" class="form-control" name="phone" placeholder="phone"  required
+           formControlName="phone">
+ 
+       <mat-error class="help-block" *ngIf="formErrors.phone">
+           {{ formErrors.phone }}
+       </mat-error>
+   </mat-form-field>
   <div class="form-group" formArrayName="addresses">
       <div *ngFor="let address of form.controls.addresses.controls;let i=index;"> 
 
@@ -35,7 +52,30 @@
                       </mat-error>
                     </mat-form-field >
 
+                    <mat-form-field >
 
+                        <input matInput type="text" class="form-control" placeholder="State" formControlName="state" required>
+  
+                        <mat-error class="help-block" *ngIf="formErrors.addresses[i].state">
+                            {{ formErrors.addresses[i].state }}
+                        </mat-error>
+                      </mat-form-field >
+                      <mat-form-field >
+
+                          <input matInput type="text" class="form-control" placeholder="street" formControlName="street" required>
+    
+                          <mat-error class="help-block" *ngIf="formErrors.addresses[i].street">
+                              {{ formErrors.addresses[i].street }}
+                          </mat-error>
+                        </mat-form-field >
+                      <mat-form-field >
+
+                          <input matInput type="text" class="form-control" placeholder="zip" formControlName="zip" required>
+    
+                          <mat-error class="help-block" *ngIf="formErrors.addresses[i].zip">
+                              {{ formErrors.addresses[i].zip }}
+                          </mat-error>
+                        </mat-form-field >
                     <mat-form-field >
 
                       <input matInput type="text" class="form-control" placeholder="country" formControlName="country" required>
@@ -50,10 +90,10 @@
       </div>
   </div>
 
-   
+   {{form|json}}
 
   <div class="form-group">
-      <button mat-button type="submit" class="btn btn-danger">Submit</button>
+      <button mat-button type="submit" [disabled]="form.valid" class="btn btn-danger">Submit</button>
   </div>
 
 </form>
